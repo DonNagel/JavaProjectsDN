@@ -1,11 +1,11 @@
-public class Pet1 {
+public class Pet {
     //private data fields
     private String name;
     private String species;
     private int age;
 
     //public Constructor(s)
-    public Pet1()
+    public Pet()
     {
         this.setName("");
         this.setSpecies("");
