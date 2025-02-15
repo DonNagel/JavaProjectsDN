@@ -1,19 +1,69 @@
+import java.util.Scanner;
+
 public class Tests {
-    // Donovan Nagel Tests project
-    public static void main(String[] args)
+    /*Donovan Nagel Tests project, Declaring variables, After a lot of testing, using int on count & score are causing a lot of issues in the father down.
+    Such as in the string format, and getting a NaN.*/
+    private double ave;
+    private double count;
+    private double score;
+
+    //Constructors.
+    public Tests()
+    //The one Set method requested by schema.
     {
-        // Declaring the three tests as seperate variables, decided to use float for them because of the limited scope of the numbers.
-        float testOne = 67.44f;
-        float testTwo = 99.99f;
-        float testThree = 88.25f;
-        /* Declaring testAvg which uses the previous floats but outputs as double so there is more accuracy.
-        The reason this happened is because I started the video and worked at the same time, but didn't realize you used double for the test Var.
-        But it was still working when I changed testAvg from a float to double, so I think I accidentally did a type conversion and is this ok?*/
-        double testAvg = (testOne + testTwo + testThree)/3;
-        // Just doing some minor mucking about on the differences between println & print.
-        System.out.println("Test Score 1: " + testOne + "\nTest Score 2: "+ testTwo + "\nTest Score 3: " + testThree);
-        System.out.print("The average of the 3 test scores is: " + testAvg);
+        this.setScore(0);
     }
+    private void setScore(int newScore) {
+        this.score += newScore;
+    }
+    //The rest of the get methods requested by schema.
+    public double getScore() {
+        return this.score;
+    }
+    public double getCount() {
+        return this.count;
+    }
+    public double getAve() {
+        return this.ave;
+    }
+    public void getAverage() {
+        //Instantiating scanner, and setting base values to 0 for the start of this method.
+        Scanner scan = new Scanner(System.in);
+        int localVar = -1;
+        System.out.println("Please enter a test score:");
+        localVar = scan.nextInt();
+
+        //Used a while loop to continuously go while localVar does not equal one, localVar is taken from user Input
+        while (localVar != -1) {
+            setScore(localVar);
+            count += 1;
+            System.out.println("Please enter a test score:");
+            localVar = scan.nextInt();
+
+        }
+        
+        /*In the assignment, if the user inputs -1 first, the output should be NaN.
+        I have been unable to get a NaN because of the arithmetic below. I am not sure of a way to prevent that from happening,
+        because score has to be set to 0, based on the assignment information, specifically where you specify the 3 tests we need to run.
+        Tried a work around, to make sure the answer is a double, but I think java does not like that score & count are not doubles, and therefore not working.
+        */
+        this.ave = (getScore() / getCount());
+
+
+        scan.close();
+
+    }
+    // Public toString method that will work on the main output as the program.
+    public String toString() {
+        //After multiple attempts at problem solving this, Here is the final answer I got to get this to work. I don't know why it made me split it up so much but it works!
+        String output = ("The average score of ");
+        String formatted = String.format("%.0f", this.getCount());
+        output += formatted;
+        formatted = String.format(" tests is: %.2f", this.getAve());
+        output += formatted;
+        return output;
+    }
+
 
     
 }
