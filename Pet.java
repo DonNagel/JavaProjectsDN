@@ -72,7 +72,7 @@ public class Pet {
     (meaning the data in the object instane that you will later instantiate in the main methos)
      */
     
-     public String toString()
+    public String toString()
     {
         String output = "Pet name: ";
         output += this.getName();
